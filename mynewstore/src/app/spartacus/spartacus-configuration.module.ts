@@ -10,13 +10,17 @@ import { defaultCmsContentProviders, layoutConfig, mediaConfig } from "@spartacu
   providers: [provideConfig(layoutConfig), provideConfig(mediaConfig), ...defaultCmsContentProviders, provideConfig(<OccConfig>{
     backend: {
       occ: {
-        baseUrl: 'https://localhost:9002',
+        baseUrl: 'https://spartacus-demo.eastus.cloudapp.azure.com/electronics-spa/en/USD/',
+        prefix: '/rest/v2'
       }
     },
   }), provideConfig(<SiteContextConfig>{
     context: {
       currency: ['USD'],
       language: ['en'],
+      customParam: ['test'],
+      urlParameters: ['customParam' ,'baseSite', 'language', 'currency'],
+      baseSite: ['electronics-spa'],
     },
   }), provideConfig(<I18nConfig>{
     i18n: {
@@ -28,6 +32,12 @@ import { defaultCmsContentProviders, layoutConfig, mediaConfig } from "@spartacu
     features: {
       level: '4.3'
     }
+  }), provideConfig(<SiteContextConfig>{
+    context: {
+      currency: ['GBP', 'USD'],
+      language: ['uk', 'en'],
+      baseSite: ['apparel-uk-spa', 'electronics-spa'],
+    },
   })]
 })
 export class SpartacusConfigurationModule { }
